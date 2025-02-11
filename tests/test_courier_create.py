@@ -27,7 +27,7 @@ class TestCourierCreate:
         }
         response = requests.post(Urls.URL_courier_create, data=payload)
         assert response.status_code == 409
-        response.json()['message'] == 'Этот логин уже используется. Попробуйте другой.'
+        assert response.json()['message'] == Data.error_messages['duplicate_login']
 
     @allure.title('Незаполненные обязательными поля')
     @pytest.mark.parametrize('empty_credentials', [
@@ -37,4 +37,4 @@ class TestCourierCreate:
     def test_create_courier_missing_required_fields_error(self, empty_credentials):
         response = requests.post(Urls.URL_courier_create, data=empty_credentials)
         assert response.status_code == 400
-        assert response.json()['message'] == 'Недостаточно данных для создания учетной записи'
+        assert response.json()['message'] == Data.error_messages['empty_input_create']

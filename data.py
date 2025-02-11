@@ -6,6 +6,12 @@ class Data:
     courier_data_without_name = {'login': 'Izam12345', 'password': '1234'}
     courier_data_with_wrong_password = {'login': 'Izam12345', 'password': '1234567'}
 
+    error_messages = {
+        'duplicate_login': 'Этот логин уже используется. Попробуйте другой.',
+        'empty_input_create' : 'Недостаточно данных для создания учетной записи',
+        'empty_input_login' : 'Недостаточно данных для входа',
+        'no_account' : 'Учетная запись не найдена'
+    }
 
 class OrderData:
     order_data_grey_1 = {

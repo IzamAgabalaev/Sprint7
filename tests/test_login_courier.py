@@ -21,7 +21,7 @@ class TestCourierLogin:
     def test_courier_login_invalid_data_error(self, nonexistent_credentials):
         response = requests.post(Urls.URL_courier_login, data=nonexistent_credentials)
         assert response.status_code == 404
-        response.json() ['message'] == 'Учетная запись не найдена'
+        assert response.json() ['message'] == Data.error_messages ['no_account']
 
     @allure.title('Авторизация с пустым полем логина или пароля')
     @pytest.mark.parametrize('empty_credentials', [
@@ -31,4 +31,4 @@ class TestCourierLogin:
     def test_courier_login_missing_credentials_error(self, empty_credentials):
         response = requests.post(Urls.URL_courier_login, data=empty_credentials)
         assert response.status_code == 400
-        response.json() ['message'] == 'Недостаточно данных для входа'
+        assert response.json() ['message'] == Data.error_messages ['empty_input_login']
